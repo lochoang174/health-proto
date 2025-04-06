@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package cuff_detection;
+
+// Service definition with unary RPC
+service CuffDetectionService {
+  // Unary RPC for cuff detection
+  rpc DetectCuffPosition (CuffDetectionRequest) returns (CuffDetectionResponse);
+}
+
+// Request message containing the base64 image
+message CuffDetectionRequest {
+  string base64_image = 1;
+  optional int32 threshold = 2;  // Optional threshold parameter
+}
+
+// Response message with detection results
+message CuffDetectionResponse {
+  string position = 1;          
+  bool success = 2;            
+  string error_message = 3;     
+  bool posture_correct = 4;    
+  bool position_correct = 5;     
+  bool is_talking = 6;          
+}
